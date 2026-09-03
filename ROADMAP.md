@@ -92,12 +92,15 @@ UBS5), modern lexica (BDAG, HALOT, Louw-Nida).
   push to `main` → GitHub Actions → `wrangler deploy` to a Cloudflare
   static-assets Worker on library422.org; data bundle published as GitHub
   release assets by `pixi run publish-data`. **Live since 2026-09-03** at
-  https://library422.org (private repo github.com/JacobSlattery/library422,
-  data release `data-20260902-62896c770c`). Still to do: APK download link
-  on the site / GitHub release; F-Droid / Play later
+  https://library422.org. Since the same day the code is public at
+  github.com/JacobSlattery/library422 (MIT), with the app builds
+  (`v1.4.0`: Windows/Linux portable zips + signed APK) and the data bundles
+  as releases, linked from the site's Downloads section. Still to do:
+  F-Droid / Play later
 - [ ] Crash-free first launch on a low-RAM (3 GB) phone
-- [ ] Trim the APK the same way (it still bundles the embedder + vectors.db
-  chunks as assets, ~130 MB): fetch them from library422.org on request instead
+- [~] APK size: the catalog made every item optional at first launch
+  (318 MB APK, core + WEB + YLT installed at launch); bundling fewer items in
+  the APK and fetching the rest from the site is now a build choice
 
 ## Feature plan
 

@@ -1766,6 +1766,7 @@ function buildSettings(counts) {
     ["Easton's Bible Dictionary (1897)", "via Theographic", "public domain"],
     ["Library", "Ante-Nicene, Nicene and Post-Nicene Fathers, Aquinas (CCEL editions); Josephus (Whiston), Philo (Yonge), Enoch (Charles), Apostolic Fathers (Project Gutenberg)", "public domain"],
     ["Software", "SQLite WASM, transformers.js + ONNX Runtime (Apache-2.0), all-MiniLM-L6-v2 (Apache-2.0), MediaPipe (Apache-2.0), Capacitor (MIT)", "open source"],
+    ["Library 422 itself", "the app's code — github.com/JacobSlattery/library422", "MIT (the texts and data above keep their own terms)"],
   ];
   const dl2 = el("dl");
   for (const [what, who, lic2] of SOURCES) {
