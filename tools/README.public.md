@@ -55,7 +55,8 @@ does), or build it from the sources if you have them.
 
 ## Licences
 
-The texts and datasets the app ships are public domain or CC BY / CC BY-SA;
-the full list with attributions is in the app under Settings → Sources &
-licences, and in `ROADMAP.md`. The licence for the code in this repository
-will be stated in a `LICENSE` file.
+The code in this repository is released under the MIT licence (see
+`LICENSE`). That licence does not touch the data: the texts, lexicons and
+works the app ships are public domain or CC BY / CC BY-SA, exactly as their
+sources state, and the full list with attributions is in the app under
+Settings → Sources & licences and in `ROADMAP.md`.

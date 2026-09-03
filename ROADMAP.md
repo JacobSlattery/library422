@@ -308,8 +308,8 @@ Order of work — each item builds on the one before it:
   private repo (renamed `library422-private`), which keeps the sources,
   notes and history. Releases live on the public repo: `v1.4.0` (Windows +
   Linux portable zips, signed APK, stable asset names the landing site's
-  Downloads section links to) and the `data-…` bundles. Still to decide: a
-  LICENSE for the code (the public README says one will be added); moving
+  Downloads section links to) and the `data-…` bundles. Code licence: MIT
+  (owner, 2026-09-03; the data keeps its own PD / CC terms). Still to decide: moving
   the sources into their own private repo as a submodule; moving the
   deploy workflow to the public repo (needs its Cloudflare secrets).*
 
