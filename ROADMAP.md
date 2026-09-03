@@ -303,10 +303,15 @@ Order of work — each item builds on the one before it:
   into the app. Still to add: plain-text/EPUB downloads (needs a public
   place to host them — release assets are private while the repo is), and
   the truncated CCEL volume titles in works.db.*
-- [ ] **Open-sourcing prep (before the repo link goes public):** move the
-  Sefaria downloads (`resources/jewish-texts/`, some possibly NC) out of
-  the tracked tree/history, and consider a public code repo + separate
-  sources repo so contributors don't clone 700 MB.
+- [~] **Open-sourcing prep** — *2026-09-03: done as a fresh PUBLIC code repo
+  (`JacobSlattery/library422`) filled by `pixi run export-public` from this
+  private repo (renamed `library422-private`), which keeps the sources,
+  notes and history. Releases live on the public repo: `v1.4.0` (Windows +
+  Linux portable zips, signed APK, stable asset names the landing site's
+  Downloads section links to) and the `data-…` bundles. Still to decide: a
+  LICENSE for the code (the public README says one will be added); moving
+  the sources into their own private repo as a submodule; moving the
+  deploy workflow to the public repo (needs its Cloudflare secrets).*
 
 ## Backlog from the 2026-09-02 audit (low severity)
 

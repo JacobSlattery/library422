@@ -29,6 +29,14 @@ data, lexicons, and primary historical sources.
    travels as GitHub release assets. Operator steps in **`DEPLOY.md`**.
    Phase D (packs, desktop layout, Electron, iOS, landing site, deep links)
    is the agreed direction — see ROADMAP.md before starting platform work.
+   **Two repos since 2026-09-03:** this one is `JacobSlattery/library422-private`
+   (everything, incl. sources and notes; data builds and the deploy workflow run
+   here); `JacobSlattery/library422` is PUBLIC and holds a filtered export of the
+   app/site/tools/shells/docs (`pixi run export-public` → `../library422`, commit
+   + push there) plus ALL releases: app builds (`v1.4.0`, stable asset names) and
+   `data-…` pre-releases (tools/publish_data.py uploads there; the workflow
+   downloads from there). Never export `notes/`, `texts/`, `resources/`,
+   `integrity/`; the export scrubs the owner's email and device serial.
 
 **Public-release structure (owner decisions 2026-09-02):** the AI feature is
 **beta and off by default** — Settings → "Ask AI (beta)" toggle

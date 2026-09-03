@@ -3,6 +3,21 @@
 How the public site gets from this repository to the domain, and the one-time
 setup it needs. Operational detail for the app itself is in CLAUDE.md.
 
+## Two repositories (since 2026-09-03)
+
+| | |
+|---|---|
+| **`JacobSlattery/library422-private`** (this one) | everything: sources under `texts/` + `resources/` (Rule 1), notes, the app, the build chain. Data builds happen here. |
+| **`JacobSlattery/library422`** (public) | the app, site, tools, desktop/Android shells and docs — a filtered export of this repo (`pixi run export-public` → `../library422`, then commit + push there). **Releases live here:** app builds (`v1.4.0`: Windows/Linux zips + APK, stable asset names the landing site links to) and the data bundles (`data-…` pre-releases). |
+
+Routine for a code change: commit here → `pixi run export-public` → commit and
+push in `../library422` (its git identity is the GitHub noreply address). The
+deploy workflow currently still runs from **this** repo (it holds the
+Cloudflare secrets) and downloads the data bundle from the public repo; to move
+the deploy to the public repo, add the same two secrets there and delete the
+workflow here. The export scrubs personal details and skips `notes/`,
+`texts/`, `resources/`, `integrity/` and `testbed/vendor/`.
+
 ## How it fits together
 
 ```
