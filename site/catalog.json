@@ -1,0 +1,640 @@
+{
+ "works": [
+  {
+   "slug": "apostolic-fathers-pg77576",
+   "title": "The writings of the Apostolic Fathers",
+   "category": "Apostolic & Early Church",
+   "source": "resources/historical-texts/church-fathers/apostolic-fathers-pg77576.txt",
+   "pages": 99,
+   "mb": 0.3
+  },
+  {
+   "slug": "anf01",
+   "title": "ANF01. The Apostolic Fathers with Justin Martyr and Irenaeus",
+   "category": "Ante-Nicene Fathers",
+   "source": "resources/historical-texts/church-fathers/anf01.txt",
+   "pages": 280,
+   "mb": 1.2
+  },
+  {
+   "slug": "anf02",
+   "title": "ANF02. Fathers of the Second Century: Hermas, Tatian,",
+   "category": "Ante-Nicene Fathers",
+   "source": "resources/historical-texts/church-fathers/anf02.txt",
+   "pages": 308,
+   "mb": 1.4
+  },
+  {
+   "slug": "anf03",
+   "title": "ANF03. Latin Christianity: Its Founder, Tertullian",
+   "category": "Ante-Nicene Fathers",
+   "source": "resources/historical-texts/church-fathers/anf03.txt",
+   "pages": 380,
+   "mb": 1.8
+  },
+  {
+   "slug": "anf04",
+   "title": "ANF04. Fathers of the Third Century: Tertullian, Part Fourth;",
+   "category": "Ante-Nicene Fathers",
+   "source": "resources/historical-texts/church-fathers/anf04.txt",
+   "pages": 355,
+   "mb": 1.5
+  },
+  {
+   "slug": "anf05",
+   "title": "ANF05. Fathers of the Third Century: Hippolytus, Cyprian, Caius,",
+   "category": "Ante-Nicene Fathers",
+   "source": "resources/historical-texts/church-fathers/anf05.txt",
+   "pages": 345,
+   "mb": 1.6
+  },
+  {
+   "slug": "anf06",
+   "title": "ANF06. Fathers of the Third Century: Gregory Thaumaturgus,",
+   "category": "Ante-Nicene Fathers",
+   "source": "resources/historical-texts/church-fathers/anf06.txt",
+   "pages": 268,
+   "mb": 1.3
+  },
+  {
+   "slug": "anf07",
+   "title": "ANF07. Fathers of the Third and Fourth Centuries: Lactantius,",
+   "category": "Ante-Nicene Fathers",
+   "source": "resources/historical-texts/church-fathers/anf07.txt",
+   "pages": 291,
+   "mb": 1.3
+  },
+  {
+   "slug": "anf08",
+   "title": "ANF08. The Twelve Patriarchs, Excerpts and Epistles, The",
+   "category": "Ante-Nicene Fathers",
+   "source": "resources/historical-texts/church-fathers/anf08.txt",
+   "pages": 370,
+   "mb": 1.6
+  },
+  {
+   "slug": "anf09",
+   "title": "ANF09. The Gospel of Peter, The Diatessaron of Tatian, The",
+   "category": "Ante-Nicene Fathers",
+   "source": "resources/historical-texts/church-fathers/anf09.txt",
+   "pages": 228,
+   "mb": 1.0
+  },
+  {
+   "slug": "anf10",
+   "title": "ANF10. Bibliographic Synopsis; General Index",
+   "category": "Ante-Nicene Fathers",
+   "source": "resources/historical-texts/church-fathers/anf10.txt",
+   "pages": 3,
+   "mb": 0.0
+  },
+  {
+   "slug": "npnf101",
+   "title": "NPNF1-01. The Confessions and Letters of St. Augustine, with a",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf101.txt",
+   "pages": 311,
+   "mb": 1.4
+  },
+  {
+   "slug": "npnf102",
+   "title": "NPNF1-02. St. Augustine's City of God and Christian Doctrine",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf102.txt",
+   "pages": 346,
+   "mb": 1.2
+  },
+  {
+   "slug": "npnf103",
+   "title": "NPNF1-03. On the Holy Trinity; Doctrinal Treatises; Moral",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf103.txt",
+   "pages": 285,
+   "mb": 1.0
+  },
+  {
+   "slug": "npnf104",
+   "title": "NPNF1-04. Augustine: The Writings Against the Manichaeans and",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf104.txt",
+   "pages": 330,
+   "mb": 1.2
+  },
+  {
+   "slug": "npnf105",
+   "title": "NPNF1-05. St. Augustine: Anti-Pelagian Writings",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf105.txt",
+   "pages": 322,
+   "mb": 1.2
+  },
+  {
+   "slug": "npnf106",
+   "title": "NPNF1-06. St. Augustine: Sermon on the Mount; Harmony of the",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf106.txt",
+   "pages": 323,
+   "mb": 1.3
+  },
+  {
+   "slug": "npnf107",
+   "title": "NPNF1-07. St. Augustine: Homilies on the Gospel of John;",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf107.txt",
+   "pages": 292,
+   "mb": 1.1
+  },
+  {
+   "slug": "npnf108",
+   "title": "NPNF1-08. St. Augustine: Exposition on the Book of Psalms",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf108.txt",
+   "pages": 398,
+   "mb": 1.6
+  },
+  {
+   "slug": "npnf109",
+   "title": "NPNF1-09. St. Chrysostom: On the Priesthood; Ascetic Treatises;",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf109.txt",
+   "pages": 241,
+   "mb": 1.0
+  },
+  {
+   "slug": "npnf110",
+   "title": "NPNF1-10. St. Chrysostom: Homilies on the Gospel of Saint",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf110.txt",
+   "pages": 254,
+   "mb": 1.1
+  },
+  {
+   "slug": "npnf111",
+   "title": "NPNF1-11. Saint Chrysostom: Homilies on the Acts of the Apostles",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf111.txt",
+   "pages": 323,
+   "mb": 1.5
+  },
+  {
+   "slug": "npnf112",
+   "title": "NPNF1-12. Saint Chrysostom: Homilies on the Epistles of Paul to",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf112.txt",
+   "pages": 236,
+   "mb": 1.0
+  },
+  {
+   "slug": "npnf113",
+   "title": "NPNF1-13. Saint Chrysostom: Homilies on Galatians, Ephesians,",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf113.txt",
+   "pages": 305,
+   "mb": 1.3
+  },
+  {
+   "slug": "npnf114",
+   "title": "NPNF1-14. Saint Chrysostom: Homilies on the Gospel of St. John",
+   "category": "Nicene & Post-Nicene Fathers I",
+   "source": "resources/historical-texts/church-fathers/npnf114.txt",
+   "pages": 291,
+   "mb": 1.3
+  },
+  {
+   "slug": "npnf201",
+   "title": "NPNF2-01. Eusebius Pamphilius: Church History, Life of",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf201.txt",
+   "pages": 235,
+   "mb": 1.8
+  },
+  {
+   "slug": "npnf202",
+   "title": "NPNF2-02. Socrates and Sozomenus Ecclesiastical Histories",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf202.txt",
+   "pages": 252,
+   "mb": 1.0
+  },
+  {
+   "slug": "npnf203",
+   "title": "NPNF2-03. Theodoret, Jerome, Gennadius, & Rufinus: Historical",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf203.txt",
+   "pages": 271,
+   "mb": 1.3
+  },
+  {
+   "slug": "npnf204",
+   "title": "NPNF2-04. Athanasius: Select Works and Letters",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf204.txt",
+   "pages": 350,
+   "mb": 1.7
+  },
+  {
+   "slug": "npnf205",
+   "title": "NPNF2-05. Gregory of Nyssa: Dogmatic Treatises, Etc.",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf205.txt",
+   "pages": 321,
+   "mb": 1.3
+  },
+  {
+   "slug": "npnf206",
+   "title": "NPNF2-06. Jerome: The Principal Works of St. Jerome",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf206.txt",
+   "pages": 293,
+   "mb": 1.3
+  },
+  {
+   "slug": "npnf207",
+   "title": "NPNF2-07. Cyril of Jerusalem, Gregory Nazianzen",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf207.txt",
+   "pages": 236,
+   "mb": 1.3
+  },
+  {
+   "slug": "npnf208",
+   "title": "NPNF2-08. Basil: Letters and Select Works",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf208.txt",
+   "pages": 188,
+   "mb": 1.1
+  },
+  {
+   "slug": "npnf209",
+   "title": "NPNF2-09. Hilary of Poitiers, John of Damascus",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf209.txt",
+   "pages": 228,
+   "mb": 0.9
+  },
+  {
+   "slug": "npnf210",
+   "title": "NPNF2-10. Ambrose: Selected Works and Letters",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf210.txt",
+   "pages": 229,
+   "mb": 1.0
+  },
+  {
+   "slug": "npnf211",
+   "title": "NPNF-211. Sulpitius Severus, Vincent of Lerins, John Cassian",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf211.txt",
+   "pages": 314,
+   "mb": 1.2
+  },
+  {
+   "slug": "npnf212",
+   "title": "NPNF-212. Leo the Great, Gregory the Great",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf212.txt",
+   "pages": 246,
+   "mb": 1.1
+  },
+  {
+   "slug": "npnf213",
+   "title": "NPNF-213. Gregory the Great (II), Ephraim Syrus, Aphrahat",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf213.txt",
+   "pages": 164,
+   "mb": 0.7
+  },
+  {
+   "slug": "npnf214",
+   "title": "NPNF2-14. The Seven Ecumenical Councils",
+   "category": "Nicene & Post-Nicene Fathers II",
+   "source": "resources/historical-texts/church-fathers/npnf214.txt",
+   "pages": 230,
+   "mb": 0.9
+  },
+  {
+   "slug": "pg2846",
+   "title": "The Life of Flavius Josephus",
+   "category": "Josephus",
+   "source": "resources/historical-texts/josephus/pg2846.txt",
+   "pages": 20,
+   "mb": 0.1
+  },
+  {
+   "slug": "pg2848",
+   "title": "Antiquities of the Jews",
+   "category": "Josephus",
+   "source": "resources/historical-texts/josephus/pg2848.txt",
+   "pages": 339,
+   "mb": 1.1
+  },
+  {
+   "slug": "pg2849",
+   "title": "Against Apion",
+   "category": "Josephus",
+   "source": "resources/historical-texts/josephus/pg2849.txt",
+   "pages": 30,
+   "mb": 0.1
+  },
+  {
+   "slug": "pg2850",
+   "title": "The Wars of the Jews",
+   "category": "Josephus",
+   "source": "resources/historical-texts/josephus/pg2850.txt",
+   "pages": 147,
+   "mb": 0.5
+  },
+  {
+   "slug": "philo-yonge-vol1",
+   "title": "Works of Philo, Vol. 1 (Yonge)",
+   "category": "Philo of Alexandria",
+   "source": "resources/historical-texts/philo/philo-yonge-vol1.txt",
+   "pages": 174,
+   "mb": 0.5
+  },
+  {
+   "slug": "philo-yonge-vol2",
+   "title": "Works of Philo, Vol. 2 (Yonge)",
+   "category": "Philo of Alexandria",
+   "source": "resources/historical-texts/philo/philo-yonge-vol2.txt",
+   "pages": 166,
+   "mb": 0.5
+  },
+  {
+   "slug": "philo-yonge-vol3",
+   "title": "Works of Philo, Vol. 3 (Yonge)",
+   "category": "Philo of Alexandria",
+   "source": "resources/historical-texts/philo/philo-yonge-vol3.txt",
+   "pages": 168,
+   "mb": 0.5
+  },
+  {
+   "slug": "philo-yonge-vol4",
+   "title": "Works of Philo, Vol. 4 (Yonge)",
+   "category": "Philo of Alexandria",
+   "source": "resources/historical-texts/philo/philo-yonge-vol4.txt",
+   "pages": 150,
+   "mb": 0.5
+  },
+  {
+   "slug": "book-of-enoch-charles-pg77935",
+   "title": "The Book of Enoch (R.H. Charles, 1917)",
+   "category": "Intertestamental Texts",
+   "source": "resources/historical-texts/pseudepigrapha/book-of-enoch-charles-pg77935.txt",
+   "pages": 31,
+   "mb": 0.1
+  },
+  {
+   "slug": "book-of-jubilees-charles-1917.clean",
+   "title": "The Book of Jubilees (R.H. Charles, 1917)",
+   "category": "Intertestamental Texts",
+   "source": "resources/historical-texts/pseudepigrapha/book-of-jubilees-charles-1917.clean.txt",
+   "pages": 37,
+   "mb": 0.1
+  },
+  {
+   "slug": "letter-of-aristeas-thackeray-1904.clean",
+   "title": "The Letter of Aristeas (H. St. J. Thackeray, 1904)",
+   "category": "Intertestamental Texts",
+   "source": "resources/historical-texts/pseudepigrapha/letter-of-aristeas-thackeray-1904.clean.txt",
+   "pages": 15,
+   "mb": 0.1
+  },
+  {
+   "slug": "psalms-of-solomon-gray-1913.clean",
+   "title": "The Psalms of Solomon (G. B. Gray, in Charles 1913)",
+   "category": "Intertestamental Texts",
+   "source": "resources/historical-texts/pseudepigrapha/psalms-of-solomon-gray-1913.clean.txt",
+   "pages": 10,
+   "mb": 0.0
+  },
+  {
+   "slug": "testaments-of-the-twelve-patriarchs-charles-1913.clean",
+   "title": "The Testaments of the Twelve Patriarchs (R.H. Charles, 1913)",
+   "category": "Intertestamental Texts",
+   "source": "resources/historical-texts/pseudepigrapha/testaments-of-the-twelve-patriarchs-charles-1913.clean.txt",
+   "pages": 35,
+   "mb": 0.1
+  },
+  {
+   "slug": "summa",
+   "title": "Summa Theologica",
+   "category": "Thomas Aquinas",
+   "source": "resources/historical-texts/aquinas/summa.txt",
+   "pages": 1538,
+   "mb": 4.7
+  },
+  {
+   "slug": "gentiles",
+   "title": "Summa Contra Gentiles",
+   "category": "Thomas Aquinas",
+   "source": "resources/historical-texts/aquinas/gentiles.txt",
+   "pages": 126,
+   "mb": 0.7
+  },
+  {
+   "slug": "catena1-matthew",
+   "title": "Catena Aurea: Matthew",
+   "category": "Thomas Aquinas",
+   "source": "resources/historical-texts/aquinas/catena1-matthew.txt",
+   "pages": 225,
+   "mb": 0.8
+  },
+  {
+   "slug": "catena2-mark",
+   "title": "Catena Aurea: Mark",
+   "category": "Thomas Aquinas",
+   "source": "resources/historical-texts/aquinas/catena2-mark.txt",
+   "pages": 77,
+   "mb": 0.3
+  },
+  {
+   "slug": "catena3-luke-part1",
+   "title": "Catena Aurea: Luke I",
+   "category": "Thomas Aquinas",
+   "source": "resources/historical-texts/aquinas/catena3-luke-part1.txt",
+   "pages": 110,
+   "mb": 0.3
+  },
+  {
+   "slug": "catena3-luke-part2",
+   "title": "Catena Aurea: Luke II",
+   "category": "Thomas Aquinas",
+   "source": "resources/historical-texts/aquinas/catena3-luke-part2.txt",
+   "pages": 115,
+   "mb": 0.4
+  },
+  {
+   "slug": "catena4-john",
+   "title": "Catena Aurea: John",
+   "category": "Thomas Aquinas",
+   "source": "resources/historical-texts/aquinas/catena4-john.txt",
+   "pages": 192,
+   "mb": 0.6
+  }
+ ],
+ "texts": [
+  {
+   "id": "aleppo",
+   "title": "Aleppo Codex",
+   "blurb": "The Hebrew Old Testament from the Aleppo Codex.",
+   "group": "Bibles · Hebrew",
+   "lang": "hbo",
+   "books": 39,
+   "mb": 1.2
+  },
+  {
+   "id": "asv",
+   "title": "American Standard Version (1901)",
+   "blurb": "Very literal; the ancestor of the NASB.",
+   "group": "Bibles · English",
+   "lang": "en",
+   "books": 66,
+   "mb": 1.8
+  },
+  {
+   "id": "bsb",
+   "title": "Berean Standard Bible",
+   "blurb": "Modern literal translation (CC0).",
+   "group": "Bibles · English",
+   "lang": "en",
+   "books": 66,
+   "mb": 1.8
+  },
+  {
+   "id": "douayrheims",
+   "title": "Douay-Rheims",
+   "blurb": "English from the Latin Vulgate (Catholic tradition), with the deuterocanon.",
+   "group": "Bibles · English",
+   "lang": "en",
+   "books": 73,
+   "mb": 2.2
+  },
+  {
+   "id": "kjv",
+   "title": "King James Version",
+   "blurb": "The 1769 Authorised Version.",
+   "group": "Bibles · English",
+   "lang": "en",
+   "books": 66,
+   "mb": 1.8
+  },
+  {
+   "id": "kjva",
+   "title": "KJV with Apocrypha",
+   "blurb": "The King James Version including the Apocrypha.",
+   "group": "Bibles · English",
+   "lang": "en",
+   "books": 80,
+   "mb": 2.2
+  },
+  {
+   "id": "lxx",
+   "title": "Septuagint (Greek)",
+   "blurb": "The Greek Old Testament of the early Church, accented. Old Testament only.",
+   "group": "Bibles · Greek",
+   "lang": "grc",
+   "books": 54,
+   "mb": 2.2
+  },
+  {
+   "id": "lxxen",
+   "title": "Septuagint in English (LXX2012)",
+   "blurb": "Brenton's translation of the Greek Old Testament, updated; includes the deuterocanon. Old Testament only.",
+   "group": "Bibles · English",
+   "lang": "en",
+   "books": 54,
+   "mb": 1.9
+  },
+  {
+   "id": "peshitta",
+   "title": "Peshitta (Syriac)",
+   "blurb": "The Syriac New Testament.",
+   "group": "Bibles · Latin & Syriac",
+   "lang": "syr",
+   "books": 27,
+   "mb": 0.4
+  },
+  {
+   "id": "textusreceptus",
+   "title": "Textus Receptus",
+   "blurb": "The Greek New Testament behind the KJV (1550/1894).",
+   "group": "Bibles · Greek",
+   "lang": "grc",
+   "books": 27,
+   "mb": 0.5
+  },
+  {
+   "id": "tischendorf",
+   "title": "Tischendorf (8th ed.)",
+   "blurb": "Critical Greek New Testament weighted toward Sinaiticus.",
+   "group": "Bibles · Greek",
+   "lang": "grc",
+   "books": 27,
+   "mb": 0.6
+  },
+  {
+   "id": "tyndale",
+   "title": "Tyndale (1525/1530)",
+   "blurb": "The first printed English New Testament from the Greek, plus the Pentateuch.",
+   "group": "Bibles · English",
+   "lang": "en",
+   "books": 33,
+   "mb": 0.8
+  },
+  {
+   "id": "vulgate",
+   "title": "Clementine Vulgate",
+   "blurb": "The Latin Bible of the Western Church.",
+   "group": "Bibles · Latin & Syriac",
+   "lang": "la",
+   "books": 73,
+   "mb": 2.2
+  },
+  {
+   "id": "web",
+   "title": "World English Bible",
+   "blurb": "Modern English, public domain; the app's reference text (red letters, added words marked).",
+   "group": "Bibles · English",
+   "lang": "en",
+   "books": 66,
+   "mb": 1.8
+  },
+  {
+   "id": "westcotthort",
+   "title": "Westcott-Hort",
+   "blurb": "The 1881 critical Greek New Testament.",
+   "group": "Bibles · Greek",
+   "lang": "grc",
+   "books": 27,
+   "mb": 0.5
+  },
+  {
+   "id": "weymouth",
+   "title": "Weymouth New Testament",
+   "blurb": "Early modern-speech New Testament (1903).",
+   "group": "Bibles · English",
+   "lang": "en",
+   "books": 27,
+   "mb": 0.5
+  },
+  {
+   "id": "wlc",
+   "title": "Westminster Leningrad Codex",
+   "blurb": "The Hebrew Old Testament (Masoretic text).",
+   "group": "Bibles · Hebrew",
+   "lang": "hbo",
+   "books": 39,
+   "mb": 1.9
+  },
+  {
+   "id": "ylt",
+   "title": "Young's Literal Translation",
+   "blurb": "Hyper-literal 1898 translation that preserves Hebrew and Greek tenses.",
+   "group": "Bibles · English",
+   "lang": "en",
+   "books": 66,
+   "mb": 2.0
+  }
+ ]
+}

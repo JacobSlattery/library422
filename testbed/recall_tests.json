@@ -1,0 +1,22 @@
+[
+  {"id": "watchers-hermon", "q": "On which mountain did the Watchers swear their oath in the Book of Enoch?",
+   "slug": "book-of-enoch", "gold": "\"mount hermon\""},
+  {"id": "masada", "q": "Who gave the final speech at Masada urging the defenders to die free?",
+   "slug": "pg2850", "gold": "eleazar AND (speech OR \"die free\" OR liberty)"},
+  {"id": "pears", "q": "What fruit did Augustine confess to stealing as a boy?",
+   "slug": "npnf101", "gold": "pears AND (stole OR steal OR theft)"},
+  {"id": "jotapata", "q": "To which Roman general did Josephus surrender at Jotapata?",
+   "slug": "pg2850", "gold": "jotapata AND vespasian"},
+  {"id": "five-ways", "q": "What is the first of Aquinas's five ways to prove God exists?",
+   "slug": "summa", "gold": "\"five ways\" OR (\"first way\" AND motion)"},
+  {"id": "two-ways", "q": "What are the two ways described at the opening of the Didache?",
+   "slug": "anf07", "gold": "\"two ways\" AND (\"way of life\" OR \"of life and\")"},
+  {"id": "eighty-six", "q": "Find the passage where Polycarp says he has served Christ eighty-six years.",
+   "slug": "anf01", "gold": "\"eighty and six years\""},
+  {"id": "perpetua", "q": "What did Perpetua's father beg her to do before her martyrdom?",
+   "slug": "anf03", "gold": "perpetua AND father AND (sacrifice OR \"have pity\")"},
+  {"id": "didache-prayer", "q": "How often does the Didache say to pray the Lord's Prayer daily?",
+   "slug": "anf07", "gold": "\"thrice in the day\" OR (\"three times\" AND pray)"},
+  {"id": "thundering", "q": "What miracle is associated with the Thundering Legion?",
+   "slug": "npnf201", "gold": "\"thundering legion\""}
+]

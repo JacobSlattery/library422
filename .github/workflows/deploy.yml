@@ -1,0 +1,86 @@
+# Deploy library422.org on every push to main that touches the app.
+#
+# The data bundle is NOT in git: `pixi run publish-data` uploads app/data/* as
+# a GitHub release and pins its tag in app/version.json (data_release). This
+# workflow downloads exactly that release, assembles the static site with
+# tools/build_site.py and deploys it to Cloudflare (Workers static assets,
+# config in wrangler.jsonc). One-time setup is described in DEPLOY.md.
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "site/**"
+      - "tools/build_site.py"
+      - "wrangler.*.jsonc"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      # secrets are not readable in step `if:` conditions; surface them as env
+      # so the deploy step can be skipped (not failed) until they are set
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      # the repository holds ~700 MB of source texts; the site needs only app/
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: |
+            app
+            site
+            tools/build_site.py
+            wrangler.app.jsonc
+            wrangler.site.jsonc
+          sparse-checkout-cone-mode: false
+
+      - name: Syntax-check the app
+        run: |
+          for f in app/js/*.js app/sw.js; do node --check "$f"; done
+
+      - name: Fetch the data bundle pinned in app/version.json
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag=$(python3 -c "import json; print(json.load(open('app/version.json')).get('data_release') or '')")
+          if [ -z "$tag" ]; then
+            echo "::error::app/version.json has no data_release — run 'pixi run publish-data' and commit it"
+            exit 1
+          fi
+          echo "data release: $tag"
+          mkdir -p app/data
+          # data bundles are published on the PUBLIC repo (tools/publish_data.py)
+          gh release download "$tag" --repo JacobSlattery/library422 --dir app/data --clobber
+          ls -la app/data
+
+      - name: Assemble the app (dist/site) and the landing site (dist/landing)
+        run: |
+          python3 tools/build_site.py --out dist/site
+          python3 tools/build_site.py --landing --out dist/landing
+
+      - name: Cloudflare secrets missing — site assembled but NOT deployed
+        if: env.CLOUDFLARE_API_TOKEN == '' || env.CLOUDFLARE_ACCOUNT_ID == ''
+        run: |
+          echo "::warning::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID are not set as repository secrets (DEPLOY.md step 2-3). Skipping the deploy."
+
+      # wrangler 4 reads CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID from the
+      # environment. (cloudflare/wrangler-action fell back to a stale wrangler
+      # that rejects assets-only configs — "Missing entry-point" — so call it
+      # directly, pinned to the major the config was validated against.)
+      - name: Deploy the app (app.library422.org)
+        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != ''
+        run: npx --yes wrangler@4 deploy --config wrangler.app.jsonc
+
+      - name: Deploy the landing site (library422.org)
+        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != ''
+        run: npx --yes wrangler@4 deploy --config wrangler.site.jsonc

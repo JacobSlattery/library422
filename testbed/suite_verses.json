@@ -1,0 +1,21 @@
+{
+  "comment": "Verse-route suite: routing + verse retrieval + generation. expect_slug 'bible' asserts the router chose the Bible.",
+  "tests": [
+    {"id": "v-forgive", "q": "Give me good verses about forgiveness",
+     "expect_slug": "bible", "answer_must": ["forgiv"]},
+    {"id": "v-romans-faith", "q": "What does Romans say about faith?",
+     "expect_slug": "bible", "answer_must": ["faith", "Romans"]},
+    {"id": "v-anxiety", "q": "Show me verses about anxiety and worry",
+     "expect_slug": "bible", "answer_must": [], "answer_any": ["anxious", "worry", "care", "afraid"]},
+    {"id": "v-shepherd", "q": "What verses describe the Lord as a shepherd?",
+     "expect_slug": "bible", "answer_must": ["shepherd"]},
+    {"id": "v-john316", "q": "What does John 3:16 say?",
+     "expect_slug": "bible", "answer_must": [], "answer_any": ["loved the world", "only born Son", "eternal life"]},
+    {"id": "v-love-enemies", "q": "Where does Jesus command us to love our enemies?",
+     "expect_slug": "bible", "answer_must": ["enemies"]},
+    {"id": "v-trap-plotinus", "q": "Give me verses about the philosopher Plotinus",
+     "negative": true},
+    {"id": "v-lib-not-verse", "q": "What did Eusebius write about the Thundering Legion?",
+     "expect_slug": "npnf201", "answer_must": [], "answer_any": ["rain", "prayer", "legion"]}
+  ]
+}

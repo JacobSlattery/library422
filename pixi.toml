@@ -1,0 +1,46 @@
+[workspace]
+authors = ["JacobSlattery"]
+channels = ["conda-forge"]
+name = "all_things_bible"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[tasks]
+dev = "python tools/dev_server.py"
+build-db = "python tools/build_db.py"
+build-works = "python tools/build_works_db.py"
+embed = "node tools/build_embeddings.mjs"
+# split db/bible.db + db/works.db into catalog items (db/items/, app/CATALOG.md)
+build-items = "python tools/build_items.py"
+bundle = "python tools/build_app_bundle.py"
+# data-quality gate (read-only) — runs before bundling in build-data
+check-db = "python tools/check_db.py"
+# the whole data chain, in dependency order
+build-data = { depends-on = ["build-db", "build-works", "embed", "build-items", "check-db", "bundle"] }
+# assemble dist/site/ exactly as the deploy workflow does (app/ + app/data/)
+site = "python tools/build_site.py"
+# assemble dist/landing/ (the library422.org landing site, from site/)
+landing = "python tools/build_site.py --landing"
+# desktop edition (Electron, portable): stage app/ + full databases into desktop-app/,
+# then `cd desktop-app && pixi run -- npm run pack:win` (or pack:linux)
+desktop-prepare = "python tools/build_desktop.py"
+# boot check of the desktop edition through CDP (needs desktop-prepare + npm install)
+smoke-desktop = "python testbed/devtools/smoke_desktop.py"
+# upload app/data/* as a GitHub release (on the PUBLIC repo) and pin it in app/version.json (DEPLOY.md)
+publish-data = "python tools/publish_data.py"
+# copy the public subset of this repo into the public code repo checkout (../library422)
+export-public = "python tools/export_public.py"
+android = "pwsh -NoProfile -File tools/build_android.ps1"
+# browser smoke test of the deterministic UI (needs `pixi run dev` in another shell)
+smoke = "python testbed/devtools/smoke_app.py"
+verify = "python tools/verify_manifest.py"
+
+[dependencies]
+python = "3.12.*"
+fastapi = ">=0.141.1,<0.142"
+uvicorn = ">=0.52.4,<0.53"
+websockets = ">=17.1,<18"
+nodejs = ">=26.6.0,<26.7"
+openjdk = "21.*"
+"llama.cpp" = ">=10642,<10643"
+numpy = ">=2.5.2,<3"

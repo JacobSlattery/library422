@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- deep links (/read/john/3/16) load this shell from a nested path: every
+       relative URL below must still resolve from the origin root -->
+  <base href="/">
+  <title>Library 422</title>
+  <meta name="description" content="Library 422 — free offline Bible study: parallel texts, tagged Greek and Hebrew, lexicons, concordance, and a library of the Church Fathers, Josephus, Philo and Aquinas. Everything runs on your device.">
+  <meta name="theme-color" content="#1a1d27">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <section id="boot" class="card">
+    <p id="status">Loading…</p>
+    <div id="progress">
+      <div id="barwrap"><div id="bar"></div></div>
+      <p id="pct"></p>
+    </div>
+  </section>
+
+  <div id="reader" hidden>
+    <nav id="topbar">
+      <div class="navrow">
+        <button id="textA" class="textsel" aria-label="Primary text"></button>
+        <button id="swapbtn" aria-label="Swap texts">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path d="M4 8h13m0 0-3-3m3 3-3 3M20 16H7m0 0 3-3m-3 3 3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="textB" class="textsel" aria-label="Second text"></button>
+      </div>
+    </nav>
+    <main id="content"></main>
+    <main id="bookpicker" hidden></main>
+    <main id="libraryview" hidden></main>
+    <main id="workview" hidden></main>
+    <main id="settingsview" hidden></main>
+    <main id="askview" hidden>
+      <div id="askmodel" class="result-card"></div>
+      <div id="askthread"></div>
+      <div class="composer">
+        <textarea id="askq" rows="1" autocomplete="off"
+                  placeholder="Ask about the Library…"></textarea>
+        <button id="askgo" aria-label="Send">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 19V5m0 0-6 6m6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </main>
+    <main id="searchview" hidden>
+      <div class="searchbar">
+        <input id="q" type="search" autocomplete="off"
+               placeholder="Search: word / λογος / ראשית / G3056…">
+        <button id="gobtn">Go</button>
+      </div>
+      <div class="searchbar">
+        <select id="ftstext" aria-label="Limit verse search to text"></select>
+        <label class="notestoggle">
+          <input type="checkbox" id="notesearch"> editor notes
+        </label>
+      </div>
+      <details id="morphsearch" class="morphsearch">
+        <summary>Parsing search (Greek &amp; Hebrew grammar)</summary>
+        <div class="searchbar">
+          <input id="mq-word" type="search" autocomplete="off"
+                 placeholder="Strong's (G3056) or lemma (λόγος) — optional">
+        </div>
+        <div class="searchbar">
+          <input id="mq-morph" type="search" autocomplete="off"
+                 placeholder="Parsing pattern, e.g. V-A?M* or *Vqw*">
+        </div>
+        <div class="searchbar">
+          <select id="mq-from" aria-label="From book"></select>
+          <select id="mq-to" aria-label="To book"></select>
+          <button id="mq-go">Find</button>
+        </div>
+        <p class="hint">Patterns use * and ? over STEPBible parsing codes.
+          Greek: V-A?M* = aorist imperatives · N-?S* = singular nouns · *-3P = 3rd plural.
+          Hebrew: *Vqw* = qal wayyiqtol · *Vpi* = piel · *Ncfs* = feminine singular nouns.</p>
+      </details>
+      <div id="results"></div>
+    </main>
+
+    <nav id="bottombar">
+      <div class="pager">
+        <button id="prev" aria-label="Previous">‹</button>
+        <button id="locbtn" aria-label="Choose book and chapter"></button>
+        <button id="readbtn" aria-label="Read chapter aloud" hidden>
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <button id="next" aria-label="Next">›</button>
+      </div>
+      <div class="tabs" role="tablist">
+        <button id="tab-read" class="tab" role="tab" aria-selected="false" aria-label="Reader">
+          <svg viewBox="0 0 24 24"><path d="M12 6C10 4.5 7 4 4 4.5V19c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V4.5C17 4 14 4.5 12 6z M12 6v14.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="tab-library" class="tab" role="tab" aria-selected="false" aria-label="Library">
+          <svg viewBox="0 0 24 24"><path d="M4 4h3v16H4z M9 4h3v16H9z M14.5 4.8l3-.8 4 15.5-3 .8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="tab-search" class="tab" role="tab" aria-selected="false" aria-label="Search">
+          <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15 15l5.5 5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </button>
+        <button id="tab-ask" class="tab" role="tab" aria-selected="false" aria-label="Ask AI" hidden>
+          <svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z M18.5 15l.9 2.3 2.3.9-2.3.9-.9 2.3-.9-2.3-2.3-.9 2.3-.9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="tab-settings" class="tab" role="tab" aria-selected="false" aria-label="Settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M19.2 13.3a7.4 7.4 0 0 0 0-2.6l2-1.6-1.9-3.2-2.4.9a7.4 7.4 0 0 0-2.2-1.3L14.2 3h-4.4l-.5 2.5a7.4 7.4 0 0 0-2.2 1.3l-2.4-.9-1.9 3.2 2 1.6a7.4 7.4 0 0 0 0 2.6l-2 1.6 1.9 3.2 2.4-.9a7.4 7.4 0 0 0 2.2 1.3l.5 2.5h4.4l.5-2.5a7.4 7.4 0 0 0 2.2-1.3l2.4.9 1.9-3.2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <section id="wordpanel" class="sheet" hidden></section>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

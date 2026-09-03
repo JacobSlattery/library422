@@ -1,0 +1,24 @@
+// Cloudflare deployment of the APP at app.library422.org: a static-assets-only
+// Worker (no server code — the app is fully client-side; see app/DESIGN.md).
+// The app has its own origin on purpose: browser storage (the ~216 MB
+// install, the AI caches) and the service worker are per origin, so the
+// landing site at library422.org (wrangler.site.jsonc) can never interfere.
+// Deployed by .github/workflows/deploy.yml with
+// `wrangler deploy --config wrangler.app.jsonc` after tools/build_site.py
+// assembles dist/site/. Setup steps: DEPLOY.md.
+{
+  "name": "library422-app",
+  "compatibility_date": "2026-06-01",
+  "assets": {
+    "directory": "./dist/site",
+    "html_handling": "auto-trailing-slash",
+    // deep links (/read/john/3/16, /library/<work>/<page>, /word/G3056) are
+    // routes inside the app: unknown paths serve index.html
+    "not_found_handling": "single-page-application"
+  },
+  // custom domain: Cloudflare creates the DNS record + certificate itself
+  // (the library422.org zone must be active on the account)
+  "routes": [
+    { "pattern": "app.library422.org", "custom_domain": true }
+  ]
+}

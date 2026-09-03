@@ -1,0 +1,17 @@
+// Cloudflare deployment of the LANDING SITE at library422.org (+ www):
+// static pages from site/ assembled into dist/landing by
+// `tools/build_site.py --landing`. The app itself lives on its own origin,
+// app.library422.org (wrangler.app.jsonc). Deployed by
+// .github/workflows/deploy.yml. Setup steps: DEPLOY.md.
+{
+  "name": "library422",
+  "compatibility_date": "2026-06-01",
+  "assets": {
+    "directory": "./dist/landing",
+    "html_handling": "auto-trailing-slash"
+  },
+  "routes": [
+    { "pattern": "library422.org", "custom_domain": true },
+    { "pattern": "www.library422.org", "custom_domain": true }
+  ]
+}

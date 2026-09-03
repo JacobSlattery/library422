@@ -1,0 +1,8 @@
+{
+  "appId": "org.library422.study",
+  "appName": "Library 422",
+  "webDir": "www",
+  "android": {
+    "adjustMarginsForEdgeToEdge": "disable"
+  }
+}

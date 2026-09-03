@@ -1,0 +1,11 @@
+{
+  "name": "all-things-bible-app",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "@capacitor/android": "^8.5.0",
+    "@capacitor/cli": "^8.5.0",
+    "@capacitor/core": "^8.5.0",
+    "@mediapipe/tasks-genai": "^0.10.29"
+  }
+}

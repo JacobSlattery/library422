@@ -1,0 +1,7 @@
+{
+  "version": "1.4.0",
+  "code": 5,
+  "date": "2026-09-03",
+  "notes": "Data catalog: first launch is ~15 MB (World English Bible + Young's Literal, cross-references, Strong's). Every other Bible, the tagged Greek and Hebrew, each lexicon, the dictionary, names and each Library work is its own download from Settings > Catalog or where it is needed. The reader explains which books a text covers.",
+  "data_release": "data-20260903-dff181d0e2"
+}

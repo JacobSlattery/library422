@@ -1,0 +1,21 @@
+{
+  "name": "library422-desktop",
+  "productName": "Library 422",
+  "version": "0.1.0",
+  "description": "Library 422 — free offline Bible study (desktop, portable)",
+  "main": "main.js",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "pack:win": "electron-packager . Library422 --platform=win32 --arch=x64 --out ../dist/desktop --overwrite --ignore=\"^/(www|data)$\" --extra-resource=www --extra-resource=data",
+    "pack:linux": "electron-packager . Library422 --platform=linux --arch=x64 --out ../dist/desktop --overwrite --ignore=\"^/(www|data)$\" --extra-resource=www --extra-resource=data"
+  },
+  "devDependencies": {
+    "@electron/packager": "^18.3.6",
+    "electron": "^38.0.0"
+  },
+  "allowScripts": {
+    "electron@38.8.6": true
+  }
+}

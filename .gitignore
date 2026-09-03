@@ -1,0 +1,33 @@
+.pixi/
+*.pyc
+__pycache__/
+db/
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+app/data/
+android-app/node_modules/
+android-app/www/
+android-app/android/.gradle/
+android-app/android/app/build/
+android-app/android/capacitor-cordova-android-plugins/build/
+models/
+
+testbed/node_modules/
+testbed/emb/
+
+# release signing (never commit)
+android-app/android/app/keystore.properties
+android-app/android/*.jks
+android-app/android/*.keystore
+
+# release artifacts
+dist/
+
+# wrangler local state
+.wrangler/
+
+# desktop edition build inputs/outputs (assembled by tools/build_desktop.py)
+desktop-app/node_modules/
+desktop-app/www/
+desktop-app/data/

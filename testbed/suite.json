@@ -1,0 +1,88 @@
+{
+  "tests": [
+    {
+      "id": "potamiaena",
+      "q": "Who led Potamiaena to martyrdom?",
+      "expect_slug": "npnf201",
+      "answer_must": [
+        "Basilides"
+      ]
+    },
+    {
+      "id": "polycarp86",
+      "q": "What did Polycarp say when the proconsul asked him to revile Christ?",
+      "expect_slug": "anf01",
+      "answer_must": [
+        "eighty",
+        "six years"
+      ]
+    },
+    {
+      "id": "ignatius-beasts",
+      "q": "In which epistle does Ignatius beg the church not to save him from the wild beasts?",
+      "expect_slug": "anf01",
+      "answer_must": [
+        "Romans"
+      ]
+    },
+    {
+      "id": "james-brother",
+      "q": "Where does Josephus mention James the brother of Jesus?",
+      "expect_slug": "pg2848",
+      "answer_must": [
+        "James"
+      ]
+    },
+    {
+      "id": "five-ways",
+      "q": "What is the first of Aquinas's five ways to prove God exists?",
+      "expect_slug": "summa",
+      "answer_must": [
+        "motion"
+      ]
+    },
+    {
+      "id": "watchers-hermon",
+      "q": "On which mountain did the Watchers swear their oath in the Book of Enoch?",
+      "expect_slug": "book-of-enoch-charles-pg77935",
+      "answer_must": [
+        "Hermon"
+      ]
+    },
+    {
+      "id": "therapeutae",
+      "q": "Who were the Therapeutae described by Philo?",
+      "expect_slug": "philo-yonge",
+      "answer_must": [
+        "contemplat"
+      ]
+    },
+    {
+      "id": "thundering-legion",
+      "q": "What miracle is associated with the Thundering Legion?",
+      "expect_slug": "npnf201",
+      "answer_must": [],
+      "answer_any": [
+        "rain",
+        "prayer"
+      ]
+    },
+    {
+      "id": "two-ways",
+      "q": "What are the two ways described at the opening of the Didache?",
+      "expect_slug": "anf07",
+      "answer_must": [
+        "life",
+        "death"
+      ]
+    },
+    {
+      "id": "masada",
+      "q": "Who gave the final speech at Masada urging the defenders to die free?",
+      "expect_slug": "pg2850",
+      "answer_must": [
+        "Eleazar"
+      ]
+    }
+  ]
+}
