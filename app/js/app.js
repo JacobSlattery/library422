@@ -1438,7 +1438,7 @@ async function buildLibrary() {
     const missing = shelfItems.map(packById).filter((p) => p && !p.installed);
     if (missing.length)
       head.append(el("span", "packtag",
-        `${missing.length} to download · ${mbOf(missing.reduce((s, p) => s + p.gz_size, 0))} MB`));
+        `${missing.length} to download · ${fmtSize(missing.reduce((s, p) => s + p.gz_size, 0))}`));
     const makeShelf = () => {
       const shelf = el("div", "shelf");
       shelf.dataset.cat = cat;
@@ -1459,7 +1459,7 @@ async function buildLibrary() {
         const item = workItem(w);
         if (item && !packInstalled(item)) {
           spine.classList.add("needs-pack");
-          spine.append(el("span", "bid", `${mbOf(packById(item)?.gz_size ?? 0)} MB`));
+          spine.append(el("span", "bid", `${fmtSize(packById(item)?.gz_size ?? 0)}`));
           spine.onclick = () => {
             // the download offer appears right under the tapped book
             shelf.querySelector(".workprompt")?.remove();
@@ -1608,14 +1608,19 @@ async function renderWorkPage() {
     body.textContent = row?.body ?? "(empty page)";
   }
   view.append(body);
-  // bookmark / note for this page of the work
-  const annHolder = el("div", "workann");
-  view.append(annHolder);
-  const slug = worksBySlug.get(workState.id);
-  const share = slug ? shareButton(`/library/${slug}/${workState.page}`, workState.title) : null;
-  annotationBar(annHolder, { kind: "work", key: ANN.workKey(workState.id, workState.page),
-    workId: workState.id, page: workState.page, title: workState.title, pages: workState.pages },
-    null, share);
+  // highlight / bookmark / note for this page live in a sheet: the pencil in
+  // the app bar opens it (lit when the page already carries something), and
+  // selecting text on the page offers "Note" with the selection quoted
+  const annBtn = el("button", "iconbtn annopen");
+  annBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 20h4l10.5-10.5a2 2 0 0 0-4-4L4 16v4z M13 7l4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>';
+  annBtn.setAttribute("aria-label", "Highlight, bookmark or note this page");
+  annBtn.onclick = () => openWorkAnnotations();
+  const bar = view.querySelector(".appbar");
+  bar.append(el("span", "flexspace"), annBtn);
+  ANN.get(ANN.workKey(workState.id, workState.page))
+    .then((rec) => { if (rec && (rec.color || rec.bookmark || rec.note?.trim())) annBtn.classList.add("on"); })
+    .catch(() => {});
+  installSelectionChip(body);
   updatePager();
   // search-result jumps land on the matched LINE, highlighted
   const jump = pendingWorkJump;
@@ -1676,6 +1681,68 @@ async function showWorkInPane(workId, page, w, jump = null) {
     target.classList.add("jumpref");
     target.scrollIntoView({ block: "center" });
   }
+}
+
+// The work page's annotation controls, as a sheet (quote = text to prefill
+// into the note, from a selection)
+async function openWorkAnnotations(quote = "") {
+  const panel = sheet();
+  const head = el("div", "sheet-head");
+  head.append(el("h3", null, `${workState.title} · p. ${workState.page}`));
+  const close = el("button", "close", "✕");
+  close.onclick = () => { panel.hidden = true; };
+  head.append(close);
+  panel.append(head);
+  const slug = worksBySlug.get(workState.id);
+  const share = slug ? shareButton(`/library/${slug}/${workState.page}`, workState.title) : null;
+  panel.hidden = false;
+  await annotationBar(panel, { kind: "work", key: ANN.workKey(workState.id, workState.page),
+    workId: workState.id, page: workState.page, title: workState.title, pages: workState.pages },
+    (rec) => $("#workview .annopen")?.classList.toggle("on", !!(rec.color || rec.bookmark || rec.note?.trim())),
+    share);
+  if (quote) {
+    // open the note with the selection quoted, ready to type under it
+    const nb = [...panel.querySelectorAll(".annbar .annbtn")].find((b) => /Note/.test(b.textContent));
+    nb?.click();
+    const ta = panel.querySelector("textarea.annnote");
+    if (ta) {
+      const q = quote.trim().replace(/\s+/g, " ");
+      ta.value = (ta.value.trim() ? ta.value.trimEnd() + "\n\n" : "") + `> ${q}\n\n`;
+      ta.focus();
+      ta.setSelectionRange(ta.value.length, ta.value.length);
+    }
+  }
+}
+
+// A floating "Note" chip while text is selected inside a Library page. Each
+// rendered page gets its own chip + listener; the listener retires itself
+// once that page's body has left the document.
+function installSelectionChip(body) {
+  document.querySelectorAll(".selchip").forEach((c) => c.remove());
+  const chip = el("button", "selchip", "✎ Note this");
+  chip.hidden = true;
+  document.body.append(chip);
+  const current = () => {
+    const sel = document.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) return "";
+    const range = sel.getRangeAt(0);
+    return body.contains(range.commonAncestorContainer) ? sel.toString() : "";
+  };
+  chip.onpointerdown = (e) => e.preventDefault();   // keep the selection alive
+  chip.onclick = () => {
+    const text = current();
+    chip.hidden = true;
+    openWorkAnnotations(text);
+  };
+  const update = () => {
+    if (!document.body.contains(body) || !chip.isConnected) {
+      chip.remove();
+      document.removeEventListener("selectionchange", update);
+      return;
+    }
+    chip.hidden = !current() || currentView !== "work";
+  };
+  document.addEventListener("selectionchange", update);
 }
 
 async function turnWorkPage(delta) {
@@ -2885,7 +2952,10 @@ const workItem = (w) => packs.find((p) => p.kind === "work" && p.work_id === w.i
   ?? (packById(`work-${w.slug}`) ? `work-${w.slug}` : null);
 const lexiconItems = (strongs) =>
   /^H/.test(strongs ?? "") ? ["lexicon-bdb"] : ["lexicon-lsj", "lexicon-abbott-smith"];
-const mbOf = (n) => Math.max(1, Math.round(n / 1e6));
+// sizes for people: KB under a megabyte, one decimal under ten, whole MB above
+const fmtSize = (n) => n < 1e6 ? `${Math.max(1, Math.round(n / 1e3))} KB`
+  : n < 10e6 ? `${(n / 1e6).toFixed(1)} MB` : `${Math.round(n / 1e6)} MB`;
+const mbOf = (n) => Math.max(1, Math.round(n / 1e6));   // arithmetic only
 const packListeners = new Set();      // views that re-render after a change
 const setPacks = (list) => {
   if (Array.isArray(list)) packs = list;
@@ -2937,8 +3007,8 @@ function packPrompt(id, what, compact = true) {
     return box;
   }
   status.textContent = p.stale
-    ? `An update to “${p.title}” is available (${mbOf(p.gz_size)} MB).`
-    : `${what} needs the “${p.title}” pack (${mbOf(p.gz_size)} MB download).`;
+    ? `An update to “${p.title}” is available (${fmtSize(p.gz_size)}).`
+    : `${what} needs the “${p.title}” pack (${fmtSize(p.gz_size)} download).`;
   const btn = el("button", compact ? "annbtn" : "pcbtn", p.stale ? "Update" : "Download");
   btn.onclick = async () => {
     btn.disabled = true;
@@ -2959,7 +3029,7 @@ function packPrompt(id, what, compact = true) {
 function itemButtons(p, rowNote) {
   const out = [];
   if (!p.main && p.available && (!p.installed || p.stale)) {
-    const b = el("button", "annbtn", p.stale ? "Update" : `Download (${mbOf(p.gz_size)} MB)`);
+    const b = el("button", "annbtn", p.stale ? "Update" : `Download (${fmtSize(p.gz_size)})`);
     b.onclick = async (e) => {
       e.stopPropagation();
       b.disabled = true;
@@ -2986,7 +3056,7 @@ function groupButton(label, ids, note, cls = "annbtn") {
   const missing = ids.map(packById).filter((p) => p && !p.installed && p.available);
   if (!missing.length) return null;
   const b = el("button", cls,
-    `${label} (${missing.length} · ${mbOf(missing.reduce((s, p) => s + p.gz_size, 0))} MB)`);
+    `${label} (${missing.length} · ${fmtSize(missing.reduce((s, p) => s + p.gz_size, 0))})`);
   b.onclick = async (e) => {
     e.stopPropagation();
     b.disabled = true;
@@ -3012,7 +3082,7 @@ function buildDownloadsCard() {
     card.append(el("p", "hint",
       `Pick exactly what lives on this device: each Bible, the Greek and Hebrew ` +
       `tagging, each lexicon and every Library work is a separate download, and ` +
-      `everything works offline afterwards. On this device now: ${mbOf(onDevice)} MB ` +
+      `everything works offline afterwards. On this device now: ${fmtSize(onDevice)} ` +
       `(${visible.filter((p) => p.installed).length} of ${visible.length} items).`));
     const note = el("p", "hint");
     const everything = groupButton("Download everything",
@@ -3043,8 +3113,8 @@ function buildDownloadsCard() {
         head.append(el("span", "packtitle", p.title),
                     el("span", "pcstatus" + (p.installed ? " ok" : ""),
                        p.installed
-                         ? (p.stale ? `update available (${mbOf(p.gz_size)} MB)` : `installed · ${mbOf(p.db_size)} MB`)
-                         : p.available ? `${mbOf(p.gz_size)} MB` : "not available offline"));
+                         ? (p.stale ? `update available (${fmtSize(p.gz_size)})` : `installed · ${fmtSize(p.db_size)}`)
+                         : p.available ? `${fmtSize(p.gz_size)}` : "not available offline"));
         row.append(head);
         if (p.blurb) row.append(el("p", "hint", p.blurb));
         const rowNote = el("p", "hint");
@@ -3075,7 +3145,7 @@ function renderAiDataControl(box, compact = false) {
     status.textContent = "AI search data: status unavailable.";
     row.append(status);
   } else if (ready) {
-    status.textContent = `AI search data: installed (${mbOf(st.db_size)} MB on this device).`;
+    status.textContent = `AI search data: installed (${fmtSize(st.db_size)} on this device).`;
     status.classList.add("ok");
     btn.textContent = "Remove";
     btn.onclick = async () => {
@@ -3089,12 +3159,12 @@ function renderAiDataControl(box, compact = false) {
     status.textContent = "AI search data: not downloaded (the server can't be reached right now).";
     row.append(status);
   } else {
-    const total = mbOf(st.gz_size) + 50;     // index chunks + embedder files
+    const total = fmtSize(st.gz_size + 50e6);     // index chunks + embedder files
     status.textContent = st.stale
-      ? `AI search data: an update is available (${mbOf(st.gz_size)} MB).`
+      ? `AI search data: an update is available (${fmtSize(st.gz_size)}).`
       : compact
-        ? `Semantic search is off — download the AI search data (about ${total} MB) for far better retrieval.`
-        : `AI search data: not downloaded (about ${total} MB: semantic index + embedder).`;
+        ? `Semantic search is off — download the AI search data (about ${total}) for far better retrieval.`
+        : `AI search data: not downloaded (about ${total}: semantic index + embedder).`;
     btn.textContent = st.stale ? "Update" : "Download";
     btn.onclick = async () => {
       btn.disabled = true;
@@ -3226,7 +3296,7 @@ function buildControls() {
           const need = isTagged(id) ? taggedItem(id) : packOfText(id);
           if (need && !packInstalled(need)) {
             box.classList.add("needs-pack");
-            box.append(el("span", "packtag", `${mbOf(packById(need)?.gz_size ?? 0)} MB`));
+            box.append(el("span", "packtag", `${fmtSize(packById(need)?.gz_size ?? 0)}`));
           }
           box.onclick = () => {
             if (slot === "textA" && id === "none") return;

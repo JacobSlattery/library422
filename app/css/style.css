@@ -476,8 +476,14 @@ details.lexfull summary { cursor: pointer; color: var(--accent); font-size: .9re
 .tlyear { flex: 0 0 9em; color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* read aloud */
-#readbtn { flex: 0 0 2.6em; display: flex; align-items: center; justify-content: center; color: var(--muted); }
-#readbtn.playing { color: var(--accent); }
+/* read-aloud: a circle at the far right of the pager, the same height as
+   its neighbours, set slightly apart from "›" */
+#readbtn {
+  flex: 0 0 41px; width: 41px; height: 41px; padding: 0; border-radius: 50%;
+  margin-left: 8px; display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+}
+#readbtn.playing { color: var(--accent); border-color: var(--accent); }
 .verse-row.reading { background: var(--chip); border-radius: 6px; }
 .word.variant { text-decoration: underline dotted; text-decoration-color: var(--muted); text-underline-offset: 3px; }
 
@@ -605,7 +611,7 @@ details.lexfull summary { cursor: pointer; color: var(--accent); font-size: .9re
   }
   body.wide .pager #locbtn { flex: 1 1 100%; order: -1; margin-bottom: 4px; white-space: normal; line-height: 1.3; }
   body.wide .pager #prev, body.wide .pager #next { flex: 1 1 40%; }
-  body.wide .pager #readbtn { flex: 0 0 2.6em; }
+  body.wide .pager #readbtn { flex: 0 0 41px; margin-left: 0; }
 
   /* top bar beside the sidebar; content column centred in what is left */
   body.wide #topbar {
@@ -684,3 +690,16 @@ details.lexfull summary { cursor: pointer; color: var(--accent); font-size: .9re
   body.wide .pager #locbtn { font-size: .8rem; }
   body.wide #topbar { padding-left: 16px; padding-right: 16px; }
 }
+
+/* Library page annotations: pencil in the app bar (lit when the page has
+   a highlight, bookmark or note) + a floating chip while text is selected */
+.appbar .annopen { margin-left: auto; }
+.appbar .annopen.on { color: var(--accent); }
+.selchip {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: calc(var(--bottombar-h, 110px) + 14px + env(safe-area-inset-bottom, 0px));
+  z-index: 25; font: inherit; font-size: .92rem; border: 1px solid var(--accent);
+  border-radius: 999px; padding: 8px 16px; background: var(--card); color: var(--accent);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 25%); cursor: pointer;
+}
+body.wide .selchip { bottom: 24px; left: calc(var(--rail-w) + (100% - var(--rail-w)) / 2); }

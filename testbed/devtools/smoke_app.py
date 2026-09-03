@@ -111,7 +111,7 @@ async def run(ws):
           "[...document.querySelectorAll('#downloads .packrow')].every(r => r.textContent.includes('installed'))"))
     # remove one Bible and put it back: rows leave and return (FTS included)
     await js(ws, "[...document.querySelectorAll('#downloads .packrow')].find(r => r.querySelector('.packtitle').textContent === 'Tyndale (1525/1530)').querySelector('button').click()")
-    await wait_for(ws, "[...document.querySelectorAll('#downloads .packrow')].find(r => r.querySelector('.packtitle').textContent === 'Tyndale (1525/1530)').textContent.includes(' MB') && ![...document.querySelectorAll('#downloads .packrow')].find(r => r.querySelector('.packtitle').textContent === 'Tyndale (1525/1530)').textContent.includes('installed')", 60, "remove tyndale")
+    await wait_for(ws, "[...document.querySelectorAll('#downloads .packrow')].find(r => r.querySelector('.packtitle').textContent === 'Tyndale (1525/1530)').textContent.match(/ [KM]B/) && ![...document.querySelectorAll('#downloads .packrow')].find(r => r.querySelector('.packtitle').textContent === 'Tyndale (1525/1530)').textContent.includes('installed')", 60, "remove tyndale")
     n = await js(ws, "import('./js/db.js').then(m => m.searchText('\"loue\"', 'tyndale', 5)).then(r => r.length)")
     check("catalog: removed text gone from search", n == 0, str(n))
     await js(ws, "[...document.querySelectorAll('#downloads .packrow')].find(r => r.querySelector('.packtitle').textContent === 'Tyndale (1525/1530)').querySelector('button').click()")
@@ -216,7 +216,11 @@ async def run(ws):
         raise
     await asyncio.sleep(1)
     check("work page opens on the citation", await js(ws, "!!document.querySelector('#workview .jumpref') || document.querySelector('#workview .workbody').textContent.length > 200"))
-    check("work page has annotation bar", await js(ws, "!!document.querySelector('#workview .annbar')"))
+    check("work page: no inline annotation bar", await js(ws, "!document.querySelector('#workview .annbar')"))
+    await js(ws, "document.querySelector('#workview .annopen').click()")
+    await wait_for(ws, "!document.querySelector('#wordpanel').hidden && !!document.querySelector('#wordpanel .annbar .swatch')", 20, "work annotation sheet")
+    check("work page: pencil opens the annotation sheet", True)
+    await js(ws, "document.querySelector('#wordpanel .close').click()")
     if await js(ws, "document.body.classList.contains('wide') && !!document.querySelector('#workview .workbody a.vref')"):
         # wide screens: a scripture reference inside the work opens the verse pane, the work stays
         await js(ws, "document.querySelector('#workview .workbody a.vref').click()")
