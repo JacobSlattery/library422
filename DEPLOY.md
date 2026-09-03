@@ -121,6 +121,15 @@ workflow here. The export scrubs personal details and skips `notes/`,
 
 ## Gotchas met on the way
 
+* GitHub push protection flags a string inside the vendored
+  `app/vendor/embedder/transformers.min.js` as a "Mistral AI API key" (it is
+  minified class names). The first public push needed a false-positive bypass
+  (`gh api -X POST repos/<owner>/<repo>/secret-scanning/push-protection-bypasses
+  -f reason=false_positive -f placeholder_id=<id from the rejection message>`).
+* `pixi run publish-data` and release creation must run from THIS repo's
+  checkout (they read `app/data/` and `dist/`); running them from the public
+  checkout fails with "manifest.json missing" / "Repository is empty" style errors.
+
 * `cloudflare/wrangler-action@v3` fell back to a stale wrangler that rejects an
   assets-only config ("Missing entry-point"). The workflow therefore runs
   `npx --yes wrangler@4 deploy` directly; wrangler 4 reads the token and account
