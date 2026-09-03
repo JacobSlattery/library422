@@ -165,14 +165,16 @@ dd { margin: 0; }
 .pager {
   display: flex; gap: 6px; align-items: center; padding: 8px 10px 2px;
 }
+/* every pager control is exactly the same height (42px incl. borders) */
 .pager button {
   font: inherit; border: 1px solid var(--line); border-radius: 8px;
   background: var(--card); color: var(--ink); cursor: pointer;
+  height: 42px; padding-top: 0; padding-bottom: 0; line-height: 40px;
 }
-#prev, #next { flex: 0 0 3em; font-size: 1.1rem; padding: 5px 0; }
+#prev, #next { flex: 0 0 3em; font-size: 1.1rem; padding: 0; }
 #prev:disabled, #next:disabled { opacity: .35; }
 #locbtn {
-  flex: 1; padding: 7px 10px; text-align: center;
+  flex: 1; padding: 0 10px; text-align: center;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
@@ -479,9 +481,9 @@ details.lexfull summary { cursor: pointer; color: var(--accent); font-size: .9re
 /* read-aloud: a circle at the far right of the pager, the same height as
    its neighbours, set slightly apart from "›" */
 #readbtn {
-  flex: 0 0 41px; width: 41px; height: 41px; padding: 0; border-radius: 50%;
+  flex: 0 0 42px; width: 42px; height: 42px; padding: 0; border-radius: 50%;
   margin-left: 8px; display: flex; align-items: center; justify-content: center;
-  color: var(--muted);
+  color: var(--muted); line-height: 1;
 }
 #readbtn.playing { color: var(--accent); border-color: var(--accent); }
 .verse-row.reading { background: var(--chip); border-radius: 6px; }
@@ -609,9 +611,9 @@ details.lexfull summary { cursor: pointer; color: var(--accent); font-size: .9re
   body.wide .pager {
     order: 2; margin-top: auto; flex-wrap: wrap; padding: 0;
   }
-  body.wide .pager #locbtn { flex: 1 1 100%; order: -1; margin-bottom: 4px; white-space: normal; line-height: 1.3; }
+  body.wide .pager #locbtn { flex: 1 1 100%; order: -1; margin-bottom: 4px; white-space: normal; line-height: 1.3; height: auto; padding: 8px 10px; }
   body.wide .pager #prev, body.wide .pager #next { flex: 1 1 40%; }
-  body.wide .pager #readbtn { flex: 0 0 41px; margin-left: 0; }
+  body.wide .pager #readbtn { flex: 0 0 42px; margin-left: 0; }
 
   /* top bar beside the sidebar; content column centred in what is left */
   body.wide #topbar {

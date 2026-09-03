@@ -2868,6 +2868,20 @@ async function updateReadButton(lang) {
   if (readLangShown !== lang) return;
   btn.hidden = !ok || !readItems.length;           // null (engine starting) hides too
   btn.classList.remove("playing");
+  // the device's speech engine can still be starting at first render (the
+  // APK's first seconds): ask again a few times so the button appears
+  // without waiting for the next chapter
+  if (ok === null && readItems.length) {
+    for (let i = 0; i < 6 && readLangShown === lang; i++) {
+      await new Promise((r) => setTimeout(r, 1500));
+      if (readLangShown !== lang || RA.isPlaying() || RA.isPaused()) return;
+      let again = null;
+      try { again = await RA.available(lang); } catch { again = false; }
+      if (again === null) continue;
+      btn.hidden = !again || !readItems.length;
+      return;
+    }
+  }
 }
 function markReading(v) {
   for (const r of document.querySelectorAll(".verse-row.reading")) r.classList.remove("reading");
